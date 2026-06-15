@@ -32,3 +32,33 @@ test('create qr code dto from array with all fields', function () {
     expect($dto->location)->toBe('Kathmandu');
     expect($dto->fonePayPanNumber)->toBe('PAN-123456');
 });
+
+test('qr code dto to array returns all fields', function () {
+    $data = [
+        'qrString' => 'qr-string-content',
+        'qrDisplayName' => 'Test Merchant',
+        'status' => 'SUCCESS',
+        'terminalId' => 123456,
+        'prn' => 'PRN-001',
+        'qrMessage' => 'QR Code generated successfully',
+        'terminalName' => 'Terminal Alpha',
+        'websocketId' => 'WS-001',
+        'location' => 'Kathmandu',
+        'fonepayPanNumber' => 'PAN-123456',
+    ];
+
+    $dto = QrCodeDTO::fromArray($data);
+
+    expect($dto->toArray())->toBe([
+        'qrString' => 'qr-string-content',
+        'qrDisplayName' => 'Test Merchant',
+        'status' => 'SUCCESS',
+        'terminalId' => 123456,
+        'prn' => 'PRN-001',
+        'qrMessage' => 'QR Code generated successfully',
+        'terminalName' => 'Terminal Alpha',
+        'webSocketId' => 'WS-001',
+        'location' => 'Kathmandu',
+        'fonePayPanNumber' => 'PAN-123456',
+    ]);
+});

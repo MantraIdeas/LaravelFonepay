@@ -47,4 +47,23 @@ class QrCodeDTO
             fonePayPanNumber: strval($data['fonepayPanNumber'] ?? ''),
         );
     }
+
+    /**
+     * @return array<string, string|int>
+     */
+    public function toArray(): array
+    {
+        return [
+            'qrString' => $this->qrString,
+            'qrDisplayName' => $this->qrDisplayName,
+            'status' => $this->status,
+            'terminalId' => $this->terminalId,
+            'prn' => $this->prn,
+            'qrMessage' => $this->qrMessage,
+            'terminalName' => $this->terminalName,
+            'webSocketId' => $this->webSocketId,
+            'location' => $this->location,
+            'fonePayPanNumber' => $this->fonePayPanNumber,
+        ];
+    }
 }
