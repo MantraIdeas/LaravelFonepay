@@ -97,8 +97,8 @@ class FonepayService
 
         if ($response->failed()) {
             $body = $response->json();
-            $message = is_array($body) && isset($body['message']) && is_string($body['message'])
-                ? $body['message']
+            $message = is_array($body) && isset($body['error']) && is_string($body['error'])
+                ? $body['error']
                 : 'Authentication failed';
 
             throw new FonepayException($message, $response->getStatusCode());
